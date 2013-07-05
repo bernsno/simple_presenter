@@ -18,8 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_development_dependency "rake"
-  gem.add_development_dependency "ostruct"
   gem.add_development_dependency "rspec"
 
-  gem.add_runtime_dependency "delegate"
+  gem.add_runtime_dependency "active_support"
 end
