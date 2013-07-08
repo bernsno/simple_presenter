@@ -56,6 +56,30 @@ module SimplePresenter
       end
     end
 
+
+# Public: Provides a method to wrap objects in a belongs_to/has_one
+# relationship in presenters.
+#
+# Examples
+#
+#   # inside StudentLessonPresenter
+#   presents_one :lesson
+#
+#   # inside StudentLessonController
+#   @student_lesson = StudentLessonPresenter.new(StudentLesson.find(params[:id]))
+#
+#   # lesson queried through StudentLessonPresenter
+#   # returns lesson wrapped in Presentation class
+#   lesson = @student_lesson.lesson
+#   lesson.class
+#     => LessonPresenter
+
+  def self.presents_one(relation)
+    define_method(relation) do
+      apply_presenter(__getobj__.send(relation))
+    end
+  end
+
 # Internal: Instantiate new presenter for an object
 #
 # Examples
